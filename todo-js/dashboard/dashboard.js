@@ -166,7 +166,7 @@ function saveTitle() {
     tempTitle = value;
 
     renderPreview();
-    taskTitle.value = ";
+    taskTitle.value = "";
 }
 if (taskTitle) {
     taskTitle.addEventListener('keypress', (e) => {
@@ -190,7 +190,7 @@ if (addInfo) {
     tempDescription = value;
 
     renderPreview();
-    addInfo.value = ";
+    addInfo.value = "";
   }
 });
 }
@@ -205,7 +205,7 @@ function renderPreview() {
 
   div.innerHTML = `
     <h3 class="mt-2 font-medium text-[20px] text-tertiary/50">${tempTitle}</h3>
-     ${tempDescription ? `<p class="font-normal text-[16px] text-tertiary/50">${tempDescription}</p>` : "}
+     ${tempDescription ? `<p class="font-normal text-[16px] text-tertiary/50">${tempDescription}</p>` : ""}
   `;
 
   previewContainer.appendChild(div);  
@@ -259,8 +259,8 @@ document.addEventListener('click', (e) => {
 
 //Resist logic
 function resetModal() {
-  taskTitle.value = ";
-  addInfo.value = ";
+  taskTitle.value = "";
+  addInfo.value = "";
   setTempPriority(null);
   tempTitle = '';
   tempDescription = '';
@@ -268,7 +268,7 @@ function resetModal() {
   setTempDateTime(null);
 
   
-  previewContainer.innerHTML = ";
+  previewContainer.innerHTML = "";
   // hide description 
   addInfo.classList.add('hidden'); 
 }
@@ -331,8 +331,8 @@ function renderTasks(taskList = tasks) {
       const todayTasks = document.getElementById('todayTasks');
       if(!todayTasks) return;
 
-      todayTasksRender.innerHTML = ";
-      completedTaskRender.innerHTML = ";
+      todayTasksRender.innerHTML = "";
+      completedTaskRender.innerHTML = "";
 
       taskList.forEach((task) => {
       const div = document.createElement('div');
@@ -351,11 +351,11 @@ function renderTasks(taskList = tasks) {
       <h3 class="mt-2 font-medium text-[20px] text-tertiary/50">${task.title}</h3>
 
       <!----Date and Time----->
-       ${task.dateTime ? `<p class="font-normal text-[16px] text-tertiary/50">${task.dateTime}</p>` : "}
+       ${task.dateTime ? `<p class="font-normal text-[16px] text-tertiary/50">${task.dateTime}</p>` : ""}
       </div>
 
       <!----Description----
-      <div>${task.description ? `<p class="font-normal text-[16px] text-tertiary/50">${task.description}</p>` : "}</div>----->
+      <div>${task.description ? `<p class="font-normal text-[16px] text-tertiary/50">${task.description}</p>` : ""}</div>----->
       
       
       <div class="flex gap-2 mt-5">
@@ -366,7 +366,7 @@ function renderTasks(taskList = tasks) {
             <div class="[&>svg]:w-5 [&>svg]:h-5">${category.icon}</div>
             <span class="text-[14px] text-tertiary">${category.name}</span>
             </div> 
-          </div>` : "}
+          </div>` : ""}
         
         <!----Priority----->
           ${task.priority ? `<div class="text-sm text-tertiary/50 flex justify-between items-center gap-1 py-2 px-2 border border-primary rounded-md ">
@@ -374,7 +374,7 @@ function renderTasks(taskList = tasks) {
             <path d="M5.15002 22.75C4.74002 22.75 4.40002 22.41 4.40002 22V2C4.40002 1.59 4.74002 1.25 5.15002 1.25C5.56002 1.25 5.90002 1.59 5.90002 2V22C5.90002 22.41 5.56002 22.75 5.15002 22.75Z" fill="white" fill-opacity="0.87"/>
             <path d="M16.35 16.75H5.15002C4.74002 16.75 4.40002 16.41 4.40002 16C4.40002 15.59 4.74002 15.25 5.15002 15.25H16.35C17.44 15.25 17.95 14.96 18.05 14.71C18.15 14.46 18 13.9 17.22 13.13L16.02 11.93C15.53 11.5 15.23 10.85 15.2 10.13C15.17 9.37 15.47 8.62 16.02 8.07L17.22 6.87C17.96 6.13 18.19 5.53 18.08 5.27C17.97 5.01 17.4 4.75 16.35 4.75H5.15002C4.73002 4.75 4.40002 4.41 4.40002 4C4.40002 3.59 4.74002 3.25 5.15002 3.25H16.35C18.54 3.25 19.24 4.16 19.47 4.7C19.69 5.24 19.84 6.38 18.28 7.94L17.08 9.14C16.83 9.39 16.69 9.74 16.7 10.09C16.71 10.39 16.83 10.66 17.04 10.85L18.28 12.08C19.81 13.61 19.66 14.75 19.44 15.3C19.21 15.83 18.5 16.75 16.35 16.75Z" fill="white" fill-opacity="0.87"/>
           </svg>
-          ${task.priority}</div>` : "}
+          ${task.priority}</div>` : ""}
           
         </div>
        
@@ -427,7 +427,7 @@ function renderTasks(taskList = tasks) {
             <div class="flex gap-3 justify-between items-center">
               <div class="flex flex-col space-y-1">
               <h3 id="editedTitle" class="mt-2 font-medium text-[24px] text-tertiary">${currentTask.title}</h3>
-              ${currentTask.description ? `<p class="font-normal text-[18px] text-tertiary/70">${currentTask.description}</p>` : "}
+              ${currentTask.description ? `<p class="font-normal text-[18px] text-tertiary/70">${currentTask.description}</p>` : ""}
               </div>
               <div>
                   <svg class="hover:scale-120 transition-all ease-in-out duration-300 cursor-pointer" id="titleDescriptionBtn" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -452,7 +452,7 @@ function renderTasks(taskList = tasks) {
               </div>
               
               <div>
-                   ${currentTask.dateTime ? `<p class="editDateTimeBtn font-normal text-[16px] text-tertiary bg-tertiary/30 hover:bg-secondary-light transition-all ease-in-out duration-300 cursor-pointer rounded-md py-2 px-4">${currentTask.dateTime}</p>` : "}
+                   ${currentTask.dateTime ? `<p class="editDateTimeBtn font-normal text-[16px] text-tertiary bg-tertiary/30 hover:bg-secondary-light transition-all ease-in-out duration-300 cursor-pointer rounded-md py-2 px-4">${currentTask.dateTime}</p>` : ""}
               </div>
             </div>
 
@@ -475,7 +475,7 @@ function renderTasks(taskList = tasks) {
                   <span class="text-[14px] text-tertiary">${category.name}</span>
                   </div> 
                   </div>
-                  ` : "}
+                  ` : ""}
                 </div> </div>
               
                 
@@ -497,7 +497,7 @@ function renderTasks(taskList = tasks) {
                     <path d="M5.15002 22.75C4.74002 22.75 4.40002 22.41 4.40002 22V2C4.40002 1.59 4.74002 1.25 5.15002 1.25C5.56002 1.25 5.90002 1.59 5.90002 2V22C5.90002 22.41 5.56002 22.75 5.15002 22.75Z" fill="white" fill-opacity="0.87"/>
                     <path d="M16.35 16.75H5.15002C4.74002 16.75 4.40002 16.41 4.40002 16C4.40002 15.59 4.74002 15.25 5.15002 15.25H16.35C17.44 15.25 17.95 14.96 18.05 14.71C18.15 14.46 18 13.9 17.22 13.13L16.02 11.93C15.53 11.5 15.23 10.85 15.2 10.13C15.17 9.37 15.47 8.62 16.02 8.07L17.22 6.87C17.96 6.13 18.19 5.53 18.08 5.27C17.97 5.01 17.4 4.75 16.35 4.75H5.15002C4.73002 4.75 4.40002 4.41 4.40002 4C4.40002 3.59 4.74002 3.25 5.15002 3.25H16.35C18.54 3.25 19.24 4.16 19.47 4.7C19.69 5.24 19.84 6.38 18.28 7.94L17.08 9.14C16.83 9.39 16.69 9.74 16.7 10.09C16.71 10.39 16.83 10.66 17.04 10.85L18.28 12.08C19.81 13.61 19.66 14.75 19.44 15.3C19.21 15.83 18.5 16.75 16.35 16.75Z" fill="white" fill-opacity="0.87"/>
                       </svg>
-                  ${currentTask.priority}</div>` : "}
+                  ${currentTask.priority}</div>` : ""}
                   </div>
                 </div>
 

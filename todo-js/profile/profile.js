@@ -65,7 +65,7 @@ saveName.addEventListener("click", () => {
   changeNameCard.classList.add("hidden");
 
   // clear input
-  newNameInput.value = ";
+  newNameInput.value = "";
 });
 
 

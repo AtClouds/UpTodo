@@ -1,0 +1,25 @@
+@import "tailwindcss";
+
+
+@theme{
+    --font-display: "Lato";
+    --breakpoint-sm: "600px";
+    --breakpoint-height: 667px;
+
+    --color-primary: #8875FF;
+    --color-secondary: #121212;
+    --color-secondary-light: #363636;
+    --color-tertiary: #FFFFFF;
+    --color-tertiary-gray: #D3D3D3;
+    --color-gray: #AFAFAF;
+}
+
+
+@theme {
+  --animate-bounce-hover: bounceHover 0.4s ease-in-out;
+
+  @keyframes bounceHover {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-8px); }
+  }
+}

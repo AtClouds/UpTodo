@@ -1,4 +1,3 @@
-
 let renderIntroHTML = '';
 
 function renderIntroPage() {

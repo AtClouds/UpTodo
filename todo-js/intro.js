@@ -8,7 +8,7 @@ function renderIntroPage() {
         <!---------UpTodo App on open--------->
         <div class="flex flex-col justify-center items-center">
         <!----UpTodo Logo---->
-        <img src="images/01-Intro/Vector.png" class="w-auto" alt="logo">
+        <img src="/imagess/01-Intro/Vector.png" class="w-auto" alt="logo">
         <!--------App Name---------->
         <h1 class="text-tertiary font-bold text-[30px] mt-2">UpTodo</h1>
         </div>
@@ -32,7 +32,7 @@ function renderIntroPage() {
             <div class="slide flex flex-col justify-center items-center p-4 min-w-full space-y-8 ">
             <!-----Image---->
             <div>
-            <img src="images/01-Intro/Group 182.png" class="min-w-20 mt-20" alt="slide image">
+            <img src="/imagess/01-Intro/Group 182.png" class="min-w-20 mt-20" alt="slide /images">
             </div>
 
             <!-----Dots Highlight---->
@@ -58,7 +58,7 @@ function renderIntroPage() {
             <div class="slide flex flex-col min-w-full justify-center p-4 items-center space-y-8">
             <!-----Image---->
             <div>
-            <img src="images/01-Intro/Frame 162.png" class="min-w-20 mt-20" alt="slide image">
+            <img src="/imagess/01-Intro/Frame 162.png" class="min-w-20 mt-20" alt="slide /images">
                 </div>
 
             <!-----Dots Highlight---->
@@ -86,7 +86,7 @@ function renderIntroPage() {
             <div class="slide flex flex-col min-w-full justify-center p-4 items-center space-y-8">
             <!-----Image---->
             <div>
-            <img src="images/01-Intro/Frame 161.png" class="min-w-20 mt-20" alt="slide image">
+            <img src="/imagess/01-Intro/Frame 161.png" class="min-w-20 mt-20" alt="slide /images">
                 </div>
 
             <!-----Dots Highlight---->

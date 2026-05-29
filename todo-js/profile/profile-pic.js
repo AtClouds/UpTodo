@@ -24,7 +24,7 @@ profileInput.addEventListener('change', async (e) => {
 
   try {
     const res = await fetch(
-      'https://api.cloudinary.com/v1_1/dxhgbxcpd/image/upload',
+      'https://api.cloudinary.com/v1_1/dxhgbxcpd//images/upload',
       {
         method: 'POST',
         body: formData,
@@ -33,14 +33,14 @@ profileInput.addEventListener('change', async (e) => {
 
     const data = await res.json();
 
-    const imageUrl = data.secure_url; // ✅ correct key
+    const /imagesUrl = data.secure_url; // ✅ correct key
 
     // update UI
-    profilePic.src = imageUrl;
+    profilePic.src = /imagesUrl;
     //Save it
-    localStorage.setItem("profilePic", imageUrl);
+    localStorage.setItem("profilePic", /imagesUrl);
 
-    console.log('uploaded:', imageUrl);
+    console.log('uploaded:', /imagesUrl);
 
   } catch (error) {
     console.error(error);

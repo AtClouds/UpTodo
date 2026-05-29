@@ -1,5 +1,5 @@
 import { auth } from "../firebase/firebase.js";
-import { onAuthStateChanged } from "/firebase/auth";
+import { onAuthStateChanged } from "firebase/auth";
 import "../profile/profile-pic.js";
 import {footerRender} from '../components/footer.js';
 import {initCategoryComponent, tempCategory, setTempCategory, categories} from '../components/category-popup.js';

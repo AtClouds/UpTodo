@@ -1,5 +1,5 @@
 import { auth } from "../firebase/firebase.js";
-import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup} from "firebase/auth";
+import { signInWithEmailAndPassword, GoogleAuthProvider, signInWithPopup} from "/firebase/auth";
 
 export const loginUser = async (email, password) => {
   const userCredential = await signInWithEmailAndPassword(

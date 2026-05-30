@@ -24,7 +24,7 @@ profileInput.addEventListener('change', async (e) => {
 
   try {
     const res = await fetch(
-      'https://api.cloudinary.com/v1_1/dxhgbxcpd//images/upload',
+      'https://api.cloudinary.com/v1_1/dxhgbxcpd/images/upload',
       {
         method: 'POST',
         body: formData,

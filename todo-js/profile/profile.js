@@ -172,10 +172,10 @@ const togglePassword = (inputId, toggleId) => {
   toggle.addEventListener("click", () => {
     if (input.type === "password") {
       input.type = "text";
-      toggle.src = "/imagess/02-login-register/hide.png";
+      toggle.src = "/images/02-login-register/hide.png";
     } else {
       input.type = "password";
-      toggle.src = "/imagess/02-login-register/view.png";
+      toggle.src = "/images/02-login-register/view.png";
     }
   });
 };

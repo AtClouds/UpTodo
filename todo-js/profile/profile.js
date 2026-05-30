@@ -33,7 +33,6 @@ document.getElementById('addTaskBtn').classList.add('hidden');
 
 
 ///SETTING///SETTING///SETTING
-//Change Name
 const changeNameBtn = document.getElementById('changeNameBtn');
 const changeNameCard = document.getElementById('changeNameCard');
 const closeModal = document.getElementById('closeModal');

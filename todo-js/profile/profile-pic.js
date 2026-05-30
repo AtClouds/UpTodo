@@ -33,14 +33,14 @@ profileInput.addEventListener('change', async (e) => {
 
     const data = await res.json();
 
-    const /imagesUrl = data.secure_url; // ✅ correct key
+    const imagesUrl = data.secure_url; // ✅ correct key
 
     // update UI
-    profilePic.src = /imagesUrl;
+    profilePic.src = imagesUrl;
     //Save it
-    localStorage.setItem("profilePic", /imagesUrl);
+    localStorage.setItem("profilePic", imagesUrl);
 
-    console.log('uploaded:', /imagesUrl);
+    console.log('uploaded:', imagesUrl);
 
   } catch (error) {
     console.error(error);

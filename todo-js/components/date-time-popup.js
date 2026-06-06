@@ -1,12 +1,13 @@
 import {months} from '../data/calender.js';
+import {footerRender} from '../components/footer.js';
+import { exp } from 'firebase/firestore/pipelines';
 
 export let tempDateTime = null;
 export function setTempDateTime(value) {
     tempDateTime = value;
 }
-/// CALENDER/TIME LOGIC /// CALENDER/TIME LOGIC
-/// CALENDER/TIME LOGIC /// CALENDER/TIME LOGIC
-export function initDateTimeComponent({initialValue = null, onSave}) {
+
+
     const dateTimeBtn = document.getElementById('date-time-btn');
     const dateTimeOpen = document.getElementById('date-time-open');
     const daysContainer = document.getElementById('daysContainer');
@@ -34,18 +35,23 @@ export function initDateTimeComponent({initialValue = null, onSave}) {
 
     let selectedDay = null;
     let selectedTime = null;
+    let selectedHour = null;
+    let selectedMinute = null;
+    let selectedPeriod = null;
     let selectedElement = null;
     let selectedMonth = 'April';
     let selectedYear = '2026';
     let currentMonth = new Date().getMonth();
     let currentYear = new Date().getFullYear();
-    let tempDate = null;
-    let tempTime = null;
+export  let tempDate = null;
+export  let tempTime = null;
+    let selectedDateTime = null;
 
-    let selectedDateTime = initialValue;
 
-    // OPEN CALENDER
-    dateTimeOpen.classList.remove('hidden');
+/// CALENDER/TIME LOGIC /// CALENDER/TIME LOGIC
+export function initCalenderModal() {
+     // OPEN CALENDER
+     dateTimeOpen.classList.remove('hidden');
     dateTimeOpen.classList.add('fixed');
     renderCalender();
 
@@ -149,13 +155,13 @@ export function initDateTimeComponent({initialValue = null, onSave}) {
         timeBtn.classList.add('fixed');
     })
 
+}
 
 
-
-    /// TIME LOGIC /// TIME LOGIC /// TIME LOGIC /// TIME LOGIC
-    /// TIME LOGIC /// TIME LOGIC /// TIME LOGIC /// TIME LOGIC
+  /// TIME LOGIC /// TIME LOGIC /// TIME LOGIC /// TIME LOGIC
+  export function initTimeModal() {
     ///HOUR ///HOUR
-    let selectedHour = new Date().getHours();
+    selectedHour = new Date().getHours();
     // convert 24hr → 12hr
     if (selectedHour > 12) {
       selectedHour -= 12;
@@ -206,7 +212,7 @@ export function initDateTimeComponent({initialValue = null, onSave}) {
 
     
     /// MINUTES /// MINUTES
-    let selectedMinute = new Date().getMinutes();
+    selectedMinute = new Date().getMinutes();
 
     // Render minutes
     function renderMinutes() {
@@ -245,7 +251,7 @@ export function initDateTimeComponent({initialValue = null, onSave}) {
     })
 
     /// PERIOD ///PERIOD
-   let selectedPeriod = new Date().getHours() >= 12 ? "PM" : "AM";
+   selectedPeriod = new Date().getHours() >= 12 ? "PM" : "AM";
     
     function renderPeriod() {
       periodDisplay.textContent = selectedPeriod;
@@ -267,6 +273,17 @@ export function initDateTimeComponent({initialValue = null, onSave}) {
         timeBtn.classList.add('hidden')
         dateTimeOpen.classList.remove('hidden');
     })
+  }
+
+
+export function initDateTimeComponent({initialValue = null, onSave}) {   
+    let selectedDateTime = initialValue;
+
+    initCalenderModal();
+
+    initTimeModal();
+    
+    
     ///SAVE BOTH DATE AND TIME 
     saveDateTimeBtn.addEventListener('click', () => {
       tempTime = `${selectedHour}:${selectedMinute} ${selectedPeriod}`;
@@ -280,3 +297,6 @@ export function initDateTimeComponent({initialValue = null, onSave}) {
       }
     });    
 }
+
+
+

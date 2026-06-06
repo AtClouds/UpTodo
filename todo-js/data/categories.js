@@ -80,8 +80,6 @@ const  defaultCategories = [
     }
 ]
 
-
-
 //Local Storage and export 
  export function getCategories() {
   const stored = localStorage.getItem("categories");

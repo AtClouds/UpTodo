@@ -1,9 +1,18 @@
 import {footerRender} from '../components/footer.js';
 import "../profile/profile-pic.js";
 import { auth } from "../firebase/firebase.js";
-import {tasks} from "../dashboard/dashboard.js";
 import {onAuthStateChanged,  signOut,  updatePassword} from "firebase/auth";
 
+
+onAuthStateChanged(auth, (user) => {
+  if (!user) {
+    window.location.href = "/registration.html";
+    return;
+  }
+  const storedTasks = localStorage.getItem(`tasks_${user.uid}`);
+  const tasks = storedTasks ? JSON.parse(storedTasks) : [];
+  renderDisplayTasks(tasks);
+});
 
     //User Name// User Name
     const userName = document.getElementById("userName");
@@ -11,7 +20,7 @@ import {onAuthStateChanged,  signOut,  updatePassword} from "firebase/auth";
     onAuthStateChanged(auth, (user) => {
     if (user) {
 
-        const savedName = localStorage.getItem("userName");
+        const savedName = localStorage.getItem(`userName_${user.uid}`);
 
         if (savedName) {
         userName.textContent = savedName;
@@ -20,7 +29,7 @@ import {onAuthStateChanged,  signOut,  updatePassword} from "firebase/auth";
         }
 
     } else {
-        window.location.href = "/index.html";
+        window.location.href = "/registration.html";
     }
     });
 
@@ -53,9 +62,9 @@ saveName.addEventListener("click", () => {
   const newName = newNameInput.value.trim();
 
   if (!newName) return;
-
+   const user = auth.currentUser; 
   // save to browser
-  localStorage.setItem("userName", newName);
+  localStorage.setItem(`userName_${user.uid}`, newName);
 
   // update UI immediately
   userName.textContent = newName;
@@ -110,7 +119,7 @@ export   function renderDisplayTasks(value) {
 
     console.log(leftDisplayTask )
 }
-renderDisplayTasks(tasks);
+
 
 //Change Password
 const changePasswordCard = document.getElementById('changePasswordCard');

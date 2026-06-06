@@ -1,4 +1,4 @@
-import {getCategories, deleteCategory} from '../data/categories.js';
+import {getCategories, deleteCategory, } from '../data/categories.js';
 import {icons} from '../data/icons.js';
 
 ///Category Pop-Up ///Category Pop-Up ///Category Pop-Up
@@ -8,10 +8,9 @@ export function setTempCategory(value) {
     tempCategory = value;
 }
 
-export  let categories = getCategories();
 
-export function initCategoryComponent({initialValue = null, onSave}) {
-    const locationPopup = document.getElementById('locationPopup');
+
+const locationPopup = document.getElementById('locationPopup');
     const categoryContainer = document.getElementById('categoryContainer');
     const saveCategoryBtn = document.getElementById('saveCategoryBtn');
     const createNewModal = document.getElementById('createNewModal');
@@ -23,28 +22,11 @@ export function initCategoryComponent({initialValue = null, onSave}) {
     const saveCreateBtn = document.getElementById('saveCreateBtn');
     const categoryNameInput = document.getElementById('categoryNameInput');
 
-    let selectedCategory = initialValue;
+    let selectedCategory = null;
     let selectedIcon = '';
     let selectedColor = null;
 
-
-    saveCategoryBtn.onclick = null;
-
-
-    // OPEN POPUP
-    locationPopup.classList.remove('hidden');
-    locationPopup.classList.add('fixed');
-    renderCategories();
-
-    //CLOSE POPUP
-    locationPopup.addEventListener("click", (e) => {
-    if (e.target === locationPopup) {
-      locationPopup.classList.add("hidden");
-    }
-    });
-
-
-    /// CATEGORY RENDERING
+        /// CATEGORY RENDERING
       function renderCategories() {
       const categories = getCategories();
       categoryContainer.innerHTML = '';
@@ -113,20 +95,35 @@ export function initCategoryComponent({initialValue = null, onSave}) {
       const id = Number(categoryCard.dataset.id);
 
       deleteCategory(id);
+      getCategories();
       renderCategories();
     });
       }
 
-    
-    //Create New Category //Create New Category 
-    //Create New Category //Create New Category
+          //RESET 
+    function reset() {
+         selectedIcon = '';
+         selectedColor = null;
+    }
 
-    /// open icon library
+export function initCategoryEvent() {
+    //CLOSE POPUP
+    locationPopup.addEventListener("click", (e) => {
+    if (e.target === locationPopup) {
+      locationPopup.classList.add("hidden");
+    }
+    });
+
+    // open icon library
     openIconPicker.addEventListener('click', () => {
     iconGrid.classList.remove('hidden');  
     });
+    // Cancel create new category
+    cancelCreateBtn.addEventListener('click', () => {
+      createNewModal.classList.add('hidden')
+    });
 
-    /// Create Choose icon from library
+     /// Create Choose icon from library
     icons.forEach(item => {
       const div = document.createElement('div');
 
@@ -156,6 +153,7 @@ export function initCategoryComponent({initialValue = null, onSave}) {
       iconGridDisplay.appendChild(div);
     });
 
+
     /// Choose new color 
     colorItem.forEach(item => {
     item.addEventListener('click', () => {
@@ -176,23 +174,14 @@ export function initCategoryComponent({initialValue = null, onSave}) {
     })
     });
 
-    //Close create category modal
-    cancelCreateBtn.addEventListener('click', () => {
-        createNewModal.classList.add('hidden')
-    });
 
-    //RESET 
-    function reset() {
-        let selectedIcon = '';
-        let selectedColor = null;
-    }
-
+   
     ///Save create category 
-    saveCreateBtn.addEventListener('click', () => {
+    saveCreateBtn.onclick = () => {
     let name = categoryNameInput.value.trim();
-
     if (!name) return;
-
+    
+   let freshCategories = getCategories();
    let newCategory = {
       id: Date.now(),
       name: name,
@@ -200,22 +189,35 @@ export function initCategoryComponent({initialValue = null, onSave}) {
       color: selectedColor
     };
 
-    categories.push(newCategory);
-    localStorage.setItem("categories", JSON.stringify(categories));
+    freshCategories.push(newCategory);
+    localStorage.setItem("categories", JSON.stringify(freshCategories));
     renderCategories();
     categoryNameInput.value = '';
-    createNewModal.classList.add('hidden')
-    reset();
-    })
+    createNewModal.classList.add('hidden');
+     reset();
+    }
+}
+
+
+export function initCategoryComponent({initialValue = null, onSave}) {
+    selectedCategory = initialValue;
+    saveCategoryBtn.onclick = null;
+
+    // OPEN POPUP
+    locationPopup.classList.remove('hidden');
+    locationPopup.classList.add('fixed');
+    renderCategories();
+
+    
 
     // save category
-    saveCategoryBtn.addEventListener('click', () => {
+    saveCategoryBtn.onclick = () => {
       if(!selectedCategory) return;
       locationPopup.classList.add("hidden");
       setTempCategory(selectedCategory);
       if (onSave) {
         onSave(selectedCategory);
       }
-    })
+    }
 
 }

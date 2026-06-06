@@ -271,7 +271,7 @@
                 </div>
 
                 <!-----Create New Category----->
-                <div id="createNewModal" class="hidden inset-0 bg-secondary backdrop-blur-sm  items-center justify-center p-8 z-50">
+                <div id="createNewModal" class="hidden inset-0 bg-secondary backdrop-blur-sm  items-center justify-center p-8 z-50 flex flex-col">
                     <div class="flex flex-col mt-5">
                         <!----Title---->
                         <h1 class="font-normal text-[30px] text-tertiary">Create new category</h1>
@@ -293,51 +293,61 @@
                             </div>
                         </div>
                         <!--------Choose Icon Color-------->
-                        <div class="mt-5 ">
+                        <div class="mt-5">
                              <p class="font-light text-[18px] text-tertiary">Category color:</p>
-                                <div id="colorPalette" class=" flex gap-3 mt-2 cursor-pointer">
-                                <div class="color-item relative  hover:ring-2 ring-tertiary transition ease-in-out duration-400  w-8 h-8 rounded-full flex justify-center" data-color="#C9CC41" style="background:#C9CC41">
+                                <div id="colorPalette" class="w-full flex flex-wrap gap-2 mt-2 cursor-pointer">
+                                <div class="color-item relative  hover:ring-2 ring-tertiary transition ease-in-out duration-400  w-8 h-8 rounded-full flex justify-center" data-color="#CCFF80" style="background:#CCFF80">
                                      <div class="check hidden absolute inset-0 top-3 left-2">
                                     <svg width="16" height="12" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5.59 10.58L1.42 6.41L0 7.82L5.59 13.41L17.59 1.41L16.18 0L5.59 10.58Z" fill="white"/>
                                     </svg>
                                 </div>
                                 </div>
-                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#41CCA7" style="background:#41CCA7"><div class="check hidden absolute inset-0 top-3 left-2">
+                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#FF9680" style="background:#FF9680"><div class="check hidden absolute inset-0 top-3 left-2">
                                     <svg width="16" height="12" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5.59 10.58L1.42 6.41L0 7.82L5.59 13.41L17.59 1.41L16.18 0L5.59 10.58Z" fill="white"/>
                                     </svg>
                                 </div></div>
-                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#4181CC" style="background:#4181CC"><div class="check hidden absolute inset-0 top-3 left-2">
+                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#80FFFF" style="background:#80FFFF"><div class="check hidden absolute inset-0 top-3 left-2">
                                     <svg width="16" height="12" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5.59 10.58L1.42 6.41L0 7.82L5.59 13.41L17.59 1.41L16.18 0L5.59 10.58Z" fill="white"/>
                                     </svg>
                                 </div></div>
-                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#66CC41" style="background:#66CC41"><div class="check hidden absolute inset-0 top-3 left-2">
+                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#80FFD9" style="background:#80FFD9"><div class="check hidden absolute inset-0 top-3 left-2">
                                     <svg width="16" height="12" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5.59 10.58L1.42 6.41L0 7.82L5.59 13.41L17.59 1.41L16.18 0L5.59 10.58Z" fill="white"/>
                                     </svg>
                                 </div></div>
-                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#41A2CC" style="background:#41A2CC"><div class="check hidden absolute inset-0 top-3 left-2">
+                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#809CFF" style="background:#809CFF"><div class="check hidden absolute inset-0 top-3 left-2">
                                     <svg width="16" height="12" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5.59 10.58L1.42 6.41L0 7.82L5.59 13.41L17.59 1.41L16.18 0L5.59 10.58Z" fill="white"/>
                                     </svg>
                                 </div></div>
-                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#CC8441" style="background:#CC8441"><div class="check hidden absolute inset-0 top-3 left-2">
+                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#FF80EB" style="background:#FF80EB"><div class="check hidden absolute inset-0 top-3 left-2">
                                     <svg width="16" height="12" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5.59 10.58L1.42 6.41L0 7.82L5.59 13.41L17.59 1.41L16.18 0L5.59 10.58Z" fill="white"/>
                                     </svg>
                                 </div></div>
-                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#9741CC" style="background:#9741CC"><div class="check hidden absolute inset-0 top-3 left-2">
+                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#FC80FF" style="background:#FC80FF"><div class="check hidden absolute inset-0 top-3 left-2">
                                     <svg width="16" height="12" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5.59 10.58L1.42 6.41L0 7.82L5.59 13.41L17.59 1.41L16.18 0L5.59 10.58Z" fill="white"/>
                                     </svg>
                                 </div></div>
-                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#EC407A" style="background:#EC407A"><div class="check hidden absolute inset-0 top-3 left-2">
+                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#80FFA3" style="background:#80FFA3"><div class="check hidden absolute inset-0 top-3 left-2">
                                     <svg width="16" height="12" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path d="M5.59 10.58L1.42 6.41L0 7.82L5.59 13.41L17.59 1.41L16.18 0L5.59 10.58Z" fill="white"/>
                                     </svg>
                                 </div></div>
+                                <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#80D1FF" style="background:#80D1FF"><div class="check hidden absolute inset-0 top-3 left-2">
+                                <svg width="16" height="12" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.59 10.58L1.42 6.41L0 7.82L5.59 13.41L17.59 1.41L16.18 0L5.59 10.58Z" fill="white"/>
+                                </svg>
+                                </div></div>   
+                                 <div class="color-item relative hover:ring-2 ring-tertiary transition ease-in-out duration-400 w-8 h-8 rounded-full flex justify-center" data-color="#FF8080" style="background:#FF8080"><div class="check hidden absolute inset-0 top-3 left-2">
+                                <svg width="16" height="12" viewBox="0 0 18 14" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path d="M5.59 10.58L1.42 6.41L0 7.82L5.59 13.41L17.59 1.41L16.18 0L5.59 10.58Z" fill="white"/>
+                                </svg>
+                                </div></div>  
                                 </div>
                         </div>
 

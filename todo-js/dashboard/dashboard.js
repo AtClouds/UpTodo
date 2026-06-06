@@ -2,36 +2,42 @@ import { auth } from "../firebase/firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
 import "../profile/profile-pic.js";
 import {footerRender} from '../components/footer.js';
-import {initCategoryComponent, tempCategory, setTempCategory, categories} from '../components/category-popup.js';
+import {initCategoryComponent, initCategoryEvent, tempCategory, setTempCategory} from '../components/category-popup.js';
+import {getCategories} from '../data/categories.js';
 import {initPriorityComponent, tempPriority, setTempPriority} from '../components/priority-popup.js';
-import {initDateTimeComponent, tempDateTime, setTempDateTime} from '../components/date-time-popup.js';
+import {initDateTimeComponent, tempDateTime, setTempDateTime, tempDate, tempTime, initCalenderModal, initTimeModal} from '../components/date-time-popup.js';
 import { log } from "firebase/firestore/pipelines";
 
 
 onAuthStateChanged(auth, (user) => {
   if (!user) {
     // ❌ Not logged in → send back
-    window.location.href = "/index.html";
+    window.location.href = "/registration.html";
+  } else {
+    /// LOADS STORED TASKS
+    loadTasksFromStorage(user);
+    renderTasks();
+    renderDashboard();
   }
 });
 
 export let tasks = [];
 
 //LOADS FROM STORAGE
-function loadTasksFromStorage() {
+function loadTasksFromStorage(user) {
   console.log('Loading from storage')
-  const storedTasks = localStorage.getItem('tasks');
+  const storedTasks = localStorage.getItem(`tasks_${user.uid}`);
   if (storedTasks) {
     tasks = JSON.parse(storedTasks);
   }
 }
 
-/// LOADS STORED TASKS
-loadTasksFromStorage();
+
 
 //SAVE TO LOCAL STORAGE
-function saveTasksToStorage() {
-  localStorage.setItem('tasks', JSON.stringify(tasks));
+function saveTasksToStorage(user) {
+  console.log('saving tasks for user:', user);
+  localStorage.setItem(`tasks_${user.uid}`, JSON.stringify(tasks));
 }
 
 
@@ -55,7 +61,7 @@ onAuthStateChanged(auth, (user) => {
   if (!dashboardUserName) return;
   if (user) {
 
-    const savedName = localStorage.getItem("userName");
+    const savedName = localStorage.getItem(`userName_${user.uid}`);
 
     if (savedName) {
       dashboardUserName.textContent = savedName;
@@ -79,6 +85,11 @@ function initSearchBar() {
 })
 }
 initSearchBar();
+
+//Category Events
+initCategoryEvent();
+// EXPORTING CATEGORIES
+let categories = getCategories();
 
 
 ///ADD TASK LOGIC ///ADD TASK LOGIC ///ADD TASK LOGIC ///ADD TASK LOGIC ///ADD TASK LOGIC ///ADD TASK LOGIC///ADD TASK LOGIC ///ADD TASK LOGIC ///ADD TASK LOGIC
@@ -105,7 +116,31 @@ export function setTasks(value) {
   tasks = value;
 }
 
+/// FOCUS /// FOCUS
+/*const focusBtn = document.getElementById('focusBtn');
+document.addEventListener('click', (e) => {
+    if(e.target.closest("#focusBtn")) {
+        initTimeModal({
+        initialValue: tempTime,
+        onSave: (value) => {
+          tempTime(value);
+        }
+    });
+    }
+});
 
+/// CALENDERS /// CALENDERS
+const calenderBtn = document.getElementById('calenderBtn');
+document.addEventListener('click', (e) => {
+    if(e.target.closest("#calenderBtn")) {
+        initCalenderModal({
+        initialValue: tempDate,
+        onSave: (value) => {
+          tempDate(value);
+        }
+    });
+    }
+});*/
 
 // OPEN ADD MODAL
 addTaskBtn.addEventListener('click', () => {
@@ -297,7 +332,7 @@ if (saveTask) {
   
   tasks.push(newTask);
   
-  saveTasksToStorage();
+  saveTasksToStorage(auth.currentUser);
   renderTasks();
   resetModal();
   renderDashboard();
@@ -338,7 +373,7 @@ function renderTasks(taskList = tasks) {
       const div = document.createElement('div');
       div.className = 'w-full bg-secondary-light rounded-md p-4 flex justify-between items-center gap-3 relative hover:animate-bounce-hover  transition-all ease-in-out duration-300 cursor-pointer';
       
-      const category = categories.find(cat => cat.id === task.category);
+      const category = getCategories().find(cat => cat.id === task.category);
 
  
     div.innerHTML += `
@@ -393,7 +428,7 @@ function renderTasks(taskList = tasks) {
          e.stopPropagation();
          task.completed = !task.completed;
         console.log(task.completed) 
-        saveTasksToStorage();
+        saveTasksToStorage(auth.currentUser);
         renderTasks();
       });
 
@@ -658,7 +693,7 @@ function renderTasks(taskList = tasks) {
                 console.log(tasks);
                 tasks = tasks.filter(task => task.id !== currentTask.id);
                 seeMore.classList.add('hidden');
-                saveTasksToStorage();
+                saveTasksToStorage(auth.currentUser);
                 renderTasks();
             }
         });
@@ -668,7 +703,7 @@ function renderTasks(taskList = tasks) {
       saveEditTask.addEventListener('click', () => {
         renderTasks();
         renderDashboard();
-        saveTasksToStorage();
+        saveTasksToStorage(auth.currentUser);
         seeMore.classList.add('hidden');
       });
 
